@@ -21,5 +21,7 @@ class Course_list_info:
         self.start_date = datetime(1999, 1, 1)
         self.end_date = datetime(1999, 1, 1)
         self.save_time = datetime(1999, 1, 1)
+        self.crowd = '' #参与人数
+        self.clicked = ''#点击量
         self.status = Course_list_info.kStatusUnkown
         self.extra = ''
