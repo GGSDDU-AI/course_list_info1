@@ -17,9 +17,11 @@ class IcourseFetcher(BaseFetcher):
         course_list = []
         soup = BeautifulSoup(self.driver.page_source, 'lxml')
         ul = soup.find('ul', attrs={'class': 'clearfix verticalTop'})
+        counter = 1
         for x in ul.find_all('li', attrs={"class": "verticalItem"}):
+            js = "var q=document.documentElement.scrollTop=0"
+            self.driver.execute_script(js)
             course = Course_list_info()
-
             course_name = x.find('p', attrs={'class': 'courseName'}).string
             school = x.find('span', attrs={'class': 'schoolName'}).string
             teacher = x.find('span', attrs={'class': 'teacherName'}).string
@@ -35,6 +37,15 @@ class IcourseFetcher(BaseFetcher):
             course.school = school
             course.teacher = teacher
 
+            xpath = '//*[@id="app"]/div/div[1]/div[1]/div[2]/ul/li[' + str(counter) + ']/div/div[2]/p[1]'
+            self.driver.find_element_by_xpath(xpath).click()
+            time.sleep(1)
+            link = self.driver.current_url
+            course.url = link
+            self.driver.back()
+            time.sleep(1)
+            counter += 1
+
             course_list.append(course)
             #print(course.url,course.crowd,course.course_name,course.platform,course.school,course.teacher)
         return course_list
@@ -49,7 +60,7 @@ class IcourseFetcher(BaseFetcher):
         while (True):
             counter += 1
             self.driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div[1]/div[2]/div/div/button[2]/span').click()
-            time.sleep(0.2)
+            time.sleep(1)
             courselist = self.fetch_one_page()
             courselists = courselists + courselist
             if counter == int(num):
