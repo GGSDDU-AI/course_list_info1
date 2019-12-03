@@ -11,7 +11,7 @@ class BaseFetcher:
         self.driver = webdriver.Chrome()
 
     @abc.abstractmethod
-    def fetch_one_page(self) -> list[Course_list_info]:
+    def fetch_one_page(self) -> list:
         pass
 
     @abc.abstractmethod

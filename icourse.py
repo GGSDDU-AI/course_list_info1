@@ -9,7 +9,7 @@ class IcourseFetcher(BaseFetcher):
         super().__init__()
         self.driver.get(PlatformMainpage)
 
-    def fetch_one_page(self) -> list[Course_list_info]:
+    def fetch_one_page(self) -> list:
         # 下面写自己的函数,爬完一页返回一次数据
         course_info_list = []
         # course_list_info = Course_list_info()
