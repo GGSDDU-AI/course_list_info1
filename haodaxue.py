@@ -70,7 +70,7 @@ class IcourseFetcher(BaseFetcher):
         nextbtn = self.driver.find_elements_by_css_selector('[pagenum="' + str(datapage) + '"]'' ')
         while ((len(nextbtn) != 0)):
             nextbtn[0].click()
-            time.sleep(1)  # 适当增加
+            time.sleep(1.5)  # 适当增加
             courselist = self.fetch_one_page()
             courselists = courselists + courselist
 
