@@ -24,7 +24,7 @@ class IcourseFetcher(BaseFetcher):
             course = Course_list_info()
             term_n = x.find('span', attrs={"class": "cview-time"}).string.strip()
             course_n = x.find('a', attrs={"class": "link-default link-course-detail"}).text.strip()
-            if '春' or '秋' in term_n:
+            if '春' in term_n or '秋' in term_n:
                 course.term = term_n
             course_name = course_n.split('\n')[0]
             id_ = x.find('a').get('courseid')
