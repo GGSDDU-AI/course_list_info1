@@ -22,11 +22,11 @@ class IcourseFetcher(BaseFetcher):
             return course_list
         for x in ul.find_all('li', attrs={"class": "view-item"}):
             course = Course_list_info()
-            trem_n = x.find('span', attrs={"class": "cview-time"}).string.strip()
+            term_n = x.find('span', attrs={"class": "cview-time"}).string.strip()
             course_n = x.find('a', attrs={"class": "link-default link-course-detail"}).text.strip()
-            if '春' or '秋' in course_n:
-                course.term = course_n
-            course_name = trem_n + course_n
+            if '春' or '秋' in term_n:
+                course.term = term_n
+            course_name = course_n.split('\n')[0]
             id_ = x.find('a').get('courseid')
             openid = x.find('a').get('courseopenid')
             link = 'https://www.cnmooc.org/portal/course/'+ id_ +'/'+ openid+'.mooc'
